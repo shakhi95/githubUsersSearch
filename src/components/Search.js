@@ -23,7 +23,7 @@ const Search = () => {
       <div className="row">
         <div className="col-10 col-md-8 mx-auto bg-white rounded-pill pe-0">
           <form className="d-flex align-items-center" onSubmit={handleSubmit}>
-            <FcSearch className="" />
+            <FcSearch />
             <input
               type="text"
               className="form-control border-0 w-auto flex-fill"
@@ -36,14 +36,14 @@ const Search = () => {
               className="btn btn-info rounded-pill border-0"
               disabled={reqRate.limit - reqRate.used === 0 && true}
             >
-              Search User
+              Search
             </button>
           </form>
         </div>
       </div>
       <div className="row">
         <div className="col-10 col-md-8 mx-auto">
-          <div className="d-flex justify-content-between px-1">
+          <div className="d-flex justify-content-between px-1 flex-wrap">
             <small
               className="text-danger"
               style={{ visibility: error.visibility }}

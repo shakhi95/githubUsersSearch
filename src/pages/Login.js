@@ -1,20 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useAuth0 } from "@auth0/auth0-react";
-
+import { useUserValues } from "../context/user_context";
+import { useHistory } from "react-router-dom";
 import loginImg from "../images/login-img.svg";
 
 const Login = () => {
   //
-  const { loginWithRedirect } = useAuth0();
+  const { signIn } = useUserValues();
+  const [name, setName] = useState("");
+  const history = useHistory();
+
+  const onFormSub = (e) => {
+    e.preventDefault();
+    if (name.length !== 0) {
+      signIn(name);
+      history.push("/");
+    }
+  };
 
   return (
-    <Wrapper className="min-vh-100 d-flex justify-content-center align-items-center">
-      <div className="text-center w-50">
-        <img src={loginImg} alt="login" className="img-fluid" />
-        <button className="btn btn-info mt-3 py-0" onClick={loginWithRedirect}>
-          LOG IN / SIGN UP
-        </button>
+    <Wrapper className="min-vh-100 py-5">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 mx-auto p-5 text-center">
+            <img src={loginImg} alt="login" className="img-fluid mb-5" />
+            <form onSubmit={onFormSub}>
+              <input
+                type="text"
+                className="form-control"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your Name..."
+                required
+              />
+              <button type="submit" className="btn btn-info mt-3 py-0">
+                LOG IN / SIGN UP
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </Wrapper>
   );
@@ -22,9 +46,6 @@ const Login = () => {
 
 const Wrapper = styled.div`
   background-color: #e0fcff;
-  button {
-    background-color: #88ebf2;
-  }
 `;
 
 export default Login;
