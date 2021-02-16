@@ -21,24 +21,26 @@ const Search = () => {
   return (
     <Wrapper className="container mb-5">
       <div className="row">
-        <div className="col-10 col-md-8 mx-auto bg-white rounded-pill pe-0">
-          <form className="d-flex align-items-center" onSubmit={handleSubmit}>
-            <FcSearch />
-            <input
-              type="text"
-              className="form-control border-0 w-auto flex-fill"
-              placeholder="Git UserName..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              disabled={reqRate.limit - reqRate.used === 0 && true}
-            />
-            <button
-              className="btn btn-info rounded-pill border-0"
-              disabled={reqRate.limit - reqRate.used === 0 && true}
-            >
-              Search
-            </button>
-          </form>
+        <div className="col-sm-10 col-md-8 mx-auto">
+          <div className="bg-white rounded-pill">
+            <form className="d-flex align-items-center" onSubmit={handleSubmit}>
+              <FcSearch className="ms-2 d-none d-sm-block" />
+              <input
+                type="text"
+                className="form-control border-0 w-auto flex-fill"
+                placeholder="Git UserName..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                disabled={reqRate.limit - reqRate.used === 0 && true}
+              />
+              <button
+                className="btn btn-info rounded-pill border-0"
+                disabled={reqRate.limit - reqRate.used === 0 && true}
+              >
+                Search
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <div className="row">
